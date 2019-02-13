@@ -1,12 +1,28 @@
-private double fractionLength = .8; //more branches if increased
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class FractalTree extends PApplet {
+
+private double fractionLength = .8f; //more branches if increased
 private int smallestBranch = 10; //the smaller the number, the more accumulation of little branches
-private double branchAngle = .5;  //the lower the number, the more steep the branches are
+private double branchAngle = .5f;  //the lower the number, the more steep the branches are
 private int thicc = 2;
 
 public void setup()
 {
 	// size(640,480);
-	size(650,500);
+	
 	noLoop();
 }
 public void draw()
@@ -47,7 +63,7 @@ public void drawBranches(int x,int y, double branchLength, double angle)
 	line(x, y, endX2, endY2);
 
 	fill(214, 79, 79);
-	if(Math.random()>.8)
+	if(Math.random()>.8f)
 		if(branchLength > 2)
 			ellipse(x,y,10,10);
 
@@ -74,14 +90,14 @@ public void drawBranches(int x,int y, double branchLength, double angle)
  int ang = 0;
  int len = 0;
  if(ang<= 3){
- 	if(branchAngle>=0.2){
- 			branchAngle += -.1;
+ 	if(branchAngle>=0.2f){
+ 			branchAngle += -.1f;
 			ang+=1;
 		}
 	}
 	if(len<=3){
 		// if(fractionLength <= 1){
-			fractionLength += .01;
+			fractionLength += .01f;
 			len +=1;
 		// }
 	}
@@ -100,3 +116,13 @@ public void drawBranches(int x,int y, double branchLength, double angle)
  //  	//could add randomness to branch angles
 
  //  	//draw more branches too
+  public void settings() { 	size(650,500); }
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "FractalTree" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
+}
