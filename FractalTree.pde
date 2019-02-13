@@ -46,6 +46,8 @@ public void drawBranches(int x,int y, double branchLength, double angle)
 	line(x, y, endX1, endY1);
 	line(x, y, endX2, endY2);
 
+	//apple color
+	stroke(214, 79, 79);
 	fill(214, 79, 79);
 	if(Math.random()>.8)
 		if(branchLength > 2)
@@ -73,23 +75,40 @@ public void drawBranches(int x,int y, double branchLength, double angle)
  //  	//branchAngle
  int ang = 0;
  int len = 0;
+
  if(ang<= 3){
  	if(branchAngle>=0.2){
  			branchAngle += -.1;
 			ang+=1;
+			redraw();
 		}
 	}
+
+
 	if(len<=3){
 		// if(fractionLength <= 1){
-			fractionLength += .01;
-			len +=1;
+		fractionLength += .01;
+		if(fractionLength>= 0.83){
+			shakeApples();
+			fractionLength = 0.8;
+			branchAngle = 0.5;
+		}
+		len +=1;
+		redraw();
 		// }
 	}
 
 	// smallestBranch += 1;
 
-	redraw();
+	
 		}
+
+public void shakeApples(){
+	
+	stroke(214, 79, 79);
+	fill(214, 79, 79);
+	ellipse((int)(Math.random()*650),(int)(Math.random()*20 )+480, 10,10);
+}
 
  //  	//fractionLength
 
